@@ -18,10 +18,16 @@ from django.contrib import admin
 from django.urls import path
 
 from . import Userdb
+from . import register
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     path('addUser/', Userdb.addUser),
     path('delUser/', Userdb.delUser),
-    path('uploadajax/', Userdb.upload)
+    path('uploadajax/', Userdb.upload),
+    path('getBookInfos/', Userdb.getBookInfos),
+    path('addBook/', Userdb.addBook),
+    path('login/', Userdb.login),
+    path('get_sms/', register.send_sms_view),
+    path('register/', register.register)
 ]

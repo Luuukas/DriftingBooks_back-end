@@ -25,7 +25,7 @@ SECRET_KEY = 'n#m29qa!&_g8h%1q1k40$)7)qc5$1$boq7p*z2b8z__39sqwep'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'BookModel','BottleModel','UserModel',
+    'BookModel',
+    'BottleModel','UserModel',
     'corsheaders',
 ]
 
@@ -82,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'drifting',
         'USER': 'root',
-        'PASSWORD': 'Chong516',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -126,6 +127,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'statics'),
+    os.path.join(BASE_DIR, 'static2'),
+]
 
 #  新增以下配置  #
 CORS_ALLOW_CREDENTIALS = True
