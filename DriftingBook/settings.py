@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'drifting',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'Chong516',
         'HOST': 'localhost',
         'PORT': '3306',
     }

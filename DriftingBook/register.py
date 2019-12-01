@@ -9,7 +9,7 @@ from django.utils.crypto import get_random_string
 
 # get response from Aliyun api
 def send_sms(PhoneNumbers,params):
-    client = AcsClient('<accessKeyId>', '<accessSecret>', 'cn-hangzhou')
+    client = AcsClient('LTAI4Fj5nqYvrdqzgcMX1ZRD', 'cKCQBQmkxmrkWglblt7PmnDc3ofK53', 'cn-hangzhou')
 
     request = CommonRequest()
     request.set_accept_format('json')
