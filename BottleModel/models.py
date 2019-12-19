@@ -6,7 +6,8 @@ from django.conf import settings
 
 # Create your models here.
 class Bottle(models.Model):
-    botid = models.IntegerField(primary_key=True, null=False)
+    botid = models.IntegerField(primary_key=True)
+    uid = models.IntegerField(null=False)
     bookname = models.CharField(max_length=64, null=False)
     writer = models.CharField(max_length=64, null=False)
     press = models.CharField(max_length=64, null=False)

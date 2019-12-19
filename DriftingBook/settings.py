@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+SERVER_DIR = "http://172.16.164.90:8000/static/img/"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -24,9 +24,6 @@ SECRET_KEY = 'n#m29qa!&_g8h%1q1k40$)7)qc5$1$boq7p*z2b8z__39sqwep'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -129,13 +126,30 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'statics'),
+    os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'static2'),
 ]
 
 #  新增以下配置  #
 CORS_ALLOW_CREDENTIALS = True
+# CORS_ORIGIN_ALLOW_ALL = True
+
+# CORS
+# CORS_ORIGIN_WHITELIST = (
+#     'http://127.0.0.1:8000',
+#     'http://localhost:8000',
+#     'http://172.16.54.254:8000'
+# )
+
+
+# CORS_ALLOW_CREDENTIALS = True  # 允许携带cookie
+
+# ALLOWED_HOSTS = ['www.xxxx.com:8080','api.xxxx.com:8000','127.0.0.1']
+ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = ()
+CORS_ORIGIN_REGEX_WHITELIST = ()
+
 # Origin '*' in CORS_ORIGIN_WHITELIST is missing scheme 出现该错误则将其注释掉
 # CORS_ORIGIN_WHITELIST = (
 #   "*"
@@ -162,3 +176,8 @@ CORS_ALLOW_HEADERS = (
   'x-requested-with',
   'Pragma',
 )
+
+# session 设置
+SESSION_COOKIE_AGE = 2 * 60 * 60 # 2小时
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True # 关闭浏览器，则COOKIE失效

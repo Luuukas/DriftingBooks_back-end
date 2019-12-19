@@ -86,8 +86,32 @@ def increase_credit(uid, delta):
     except BaseException:
         return {"state":1}
     else:
+        if user.address == "":
+            return {"state":3}
         if user.credit+delta < 0:
             return {"state":2}
         user.credit += delta
         user.save()
-        return {"state":0}
+        return {"state":0, "infos":[user.username, user.phonenumber, user.address]}
+
+def get_user_infos(uid):
+    try:
+        user = User.objects.get(uid=uid)
+    except BaseException:
+        return {"state":1}
+    else:
+        return {
+            "state":0,
+            "infos":[user.username, user.phonenumber, user.address, user.credit, user.enrolldatetime]
+            }
+
+def get_phonenumber(uid):
+    try:
+        user = User.objects.get(uid=uid)
+    except BaseException:
+        return {"state":1}
+    else:
+        return {
+            "state":0,
+            "phonenumber":user.phonenumber
+        }

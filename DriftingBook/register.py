@@ -8,7 +8,7 @@ from django.utils.crypto import get_random_string
 
 
 # get response from Aliyun api
-def send_sms(PhoneNumbers,params):
+def send_sms(telephone,params):
     client = AcsClient('LTAI4Fj5nqYvrdqzgcMX1ZRD', 'cKCQBQmkxmrkWglblt7PmnDc3ofK53', 'cn-hangzhou')
 
     request = CommonRequest()
@@ -20,7 +20,7 @@ def send_sms(PhoneNumbers,params):
     request.set_action_name('SendSms')
 
     request.add_query_param('RegionId', "cn-hangzhou")
-    request.add_query_param('PhoneNumbers', PhoneNumbers)
+    request.add_query_param('PhoneNumbers', telephone)
     request.add_query_param('SignName', "漂流图书")
     request.add_query_param('TemplateCode', "SMS_179225017")
 
@@ -38,11 +38,11 @@ def sms_state_handler(response):
     return {"code":1,"message":"success"}
 
 
-# 调用该函数发送sms并将PhoneNumbers和code存入cache中
+# 调用该函数发送sms并将telephone和code存入cache中
 def send_sms_view(request):
     code = get_random_string(length=4, allowed_chars="0123456789")
     params = "{\"code\":\"" + code + "\"}"
-    tele = str(request.GET.get('PhoneNumbers'))
+    tele = str(request.GET.get('telephone'))
     sms_result = sms_state_handler(send_sms(tele,params))
 
     if sms_result["code"] == 1:

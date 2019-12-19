@@ -23,11 +23,17 @@ def delete_stars_table(uid):
   # for table in db_cursor:
   #   print(table)
 
-def insert_stars_table(uid, bid, isself):
+def insert_star(uid, bid, isself):
   db_cursor = db_connection.cursor()
   db_cursor.execute("INSERT INTO ust_%d(bid,isself) VALUES(%d,%d)" % (uid, bid,isself))
   db_connection.commit()
   # print(db_cursor.rowcount, "Record Inserted")
+
+def remove_star(uid, bid):
+  db_cursor = db_connection.cursor()
+  db_cursor.execute("DELETE FROM ust_%d WHERE bid=%d" % (uid, bid))
+  db_connection.commit()
+
 
 def select_stars_table(uid):
   db_cursor = db_connection.cursor()
@@ -36,5 +42,6 @@ def select_stars_table(uid):
   for record in db_cursor:
     bids.append([record[1],record[2]])
   return {
+    "msg" : "success",
     "bottles" : bids
   }

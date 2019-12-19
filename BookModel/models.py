@@ -9,4 +9,6 @@ class Book(models.Model):
     bookname = models.CharField(max_length=64, null=False)
     writer = models.CharField(max_length=64, null=False)
     press = models.CharField(max_length=64, null=False)
+    coverurl = models.CharField(max_length=64, null=False)
+    description = models.CharField(max_length=512, null=False)
     neededcredit = models.IntegerField(default=0)

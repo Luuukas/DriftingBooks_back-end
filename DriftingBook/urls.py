@@ -22,12 +22,20 @@ from . import register
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    path('addUser/', Userdb.addUser),
-    path('delUser/', Userdb.delUser),
     path('uploadajax/', Userdb.upload),
     path('getBookInfos/', Userdb.getBookInfos),
     path('addBook/', Userdb.addBook),
     path('login/', Userdb.login),
     path('get_sms/', register.send_sms_view),
-    path('register/', register.register)
+    path('register/', register.register),
+    path('visBottle/', Userdb.visBottle),
+    path('getBottle/', Userdb.getBottle),
+    path('addBottle/', Userdb.addBottle),
+    path('getStarInfos/', Userdb.getStarInfos),
+    path('getUserInfos/', Userdb.getUserInfos),
+    path('removeStar/', Userdb.removeStar),
+    path('writeOffAccount/', Userdb.writeOffAccount),
+    path('addStar/', Userdb.addStar),
+    path('pickBook/', Userdb.pickBook),
+    path('getBottleNum/', Userdb.getBottleNum)
 ]
