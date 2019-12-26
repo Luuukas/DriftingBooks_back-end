@@ -1,7 +1,8 @@
 from BookModel.models import Book
-
+import douban_book
 def getAbout(bookname, writer, press):
-    return ["https://img3.doubanio.com/view/subject/l/public/s6273530.jpg","好好笑的爱"]
+    book = douban_book.get_book_info(bookname, writer, press)
+    return [book["img"], book["content_intro"], book["author_intro"]]
 
 def add_book(bookname, writer, press, neededcredit):
     about = getAbout(bookname, writer, press);

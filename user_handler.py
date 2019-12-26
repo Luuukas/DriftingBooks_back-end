@@ -31,7 +31,8 @@ def check_user_with_username(username, password):
         if user.password==password:
             return {
                 "state" : 0,
-                "uid" : user.uid
+                "uid" : user.uid,
+                "issuper" : user.issuper
             }
         else:
             return {"state":2}
@@ -45,7 +46,8 @@ def check_user_with_phonenumber(phonenumber, password):
         if user.password==password:
             return {
                 "state" : 0 ,
-                "uid" : user.uid
+                "uid" : user.uid,
+                "issuper" : user.issuper
             }
         else:
             return {"state":2}
@@ -86,13 +88,11 @@ def increase_credit(uid, delta):
     except BaseException:
         return {"state":1}
     else:
-        if user.address == "":
-            return {"state":3}
         if user.credit+delta < 0:
             return {"state":2}
         user.credit += delta
         user.save()
-        return {"state":0, "infos":[user.username, user.phonenumber, user.address]}
+        return {"state":0}
 
 def get_user_infos(uid):
     try:
@@ -102,7 +102,7 @@ def get_user_infos(uid):
     else:
         return {
             "state":0,
-            "infos":[user.username, user.phonenumber, user.address, user.credit, user.enrolldatetime]
+            "infos":[user.username, user.phonenumber, user.address, user.credit, user.enrolldatetime, user.issuper, user.uid]
             }
 
 def get_phonenumber(uid):

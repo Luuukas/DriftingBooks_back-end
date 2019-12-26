@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'BookModel',
-    'BottleModel','UserModel',
+    'BottleModel','UserModel','OrderModel',
     'corsheaders',
 ]
 
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'DriftingBook.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['static/dist'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,6 +128,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'static2'),
+    os.path.join(BASE_DIR, 'static/dist/static')
 ]
 
 #  新增以下配置  #

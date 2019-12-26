@@ -12,6 +12,16 @@ def add_bottle(uid, bookname, writer, press, description_url, photos_urls_str, t
     bottle.save()
     return {"state":0, "botid":bottle.botid}
 
+def bind_order(botid, oid):
+    try:
+        bottle = Bottle(botid=botid)
+    except BaseException:
+        return {"state":1}
+    else:
+        botid.oid = oid
+        bottle.save()
+        return {"state":0}
+
 def del_bottle(botid):
     try:
         bottle = Bottle.objects.get(botid=botid);
@@ -36,7 +46,7 @@ def get_bottle(botid):
     except BaseException:
         return {"state":1}
     else:
-        return {"state":0, "infos":[bottle.botid, bottle.bookname, bottle.writer, bottle.press, bottle.description, bottle.photos, bottle.timeouthandle, bottle.sendto, bottle.uploaddatetime, bottle.state]}
+        return {"state":0, "infos":[bottle.botid, bottle.bookname, bottle.writer, bottle.press, bottle.description, bottle.photos, bottle.timeouthandle, bottle.sendto, bottle.uploaddatetime, bottle.state, bottle.oid]}
 
 def update_description(botid, new_description_url):
     try:
@@ -63,9 +73,10 @@ def before_update_sendto(botid, code):
             return {"state":2}
         return {"state":0}
 
-def update_sendto(botid, code):
+def update_sendto(botid, code, oid):
     bottle = Bottle.objects.get(botid=botid)
     bottle.sendto = code
+    bottle.oid = oid
     bottle.save()
     update_state(botid, 4)
     return {"state":0}

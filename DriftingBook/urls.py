@@ -20,7 +20,13 @@ from django.urls import path
 from . import Userdb
 from . import register
 
+from . import modifyInfo
+
+from django.views.generic import TemplateView
+
 urlpatterns = [
+    path('',TemplateView.as_view(template_name="index.html"),name="index"),
+
     url(r'^admin/', admin.site.urls),
     path('uploadajax/', Userdb.upload),
     path('getBookInfos/', Userdb.getBookInfos),
@@ -37,5 +43,21 @@ urlpatterns = [
     path('writeOffAccount/', Userdb.writeOffAccount),
     path('addStar/', Userdb.addStar),
     path('pickBook/', Userdb.pickBook),
-    path('getBottleNum/', Userdb.getBottleNum)
+    path('getBottleNum/', Userdb.getBottleNum),
+    path('updateAddress/', Userdb.updateAddress),
+
+    path('appendReceiveOrder/', Userdb.appendReceiveOrder),
+    path('completeOrder/', Userdb.completeOrder),
+    path('retrieveBook/', Userdb.retrieveBook),
+    path('getAllOrders/', Userdb.getAllOrders),
+    path('rejectOrder/', Userdb.rejectOrder),
+    path('acceptOrder/', Userdb.acceptOrder),
+
+    path('getOrder/', Userdb.getOrder),
+
+    path('sendSms2BindedPhone/', modifyInfo.sendSms2BindedPhone),
+    path('changePassword/', modifyInfo.changePassword),
+    path('changePhonenumber/', modifyInfo.changePhonenumber),
+
+    path('getOrdersOfUser/', Userdb.getOrdersOfUser)
 ]
