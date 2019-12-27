@@ -283,7 +283,8 @@ def getStarInfos(request):
 
 def getUserInfos(request):
     if request.method == 'POST':
-        # print(request.META.get("HTTP_AUTHORIZATION"))
+        print(request.META.get("HTTP_AUTHORIZATION"))
+        print("upupup")
         try:
             uid = cache.get(request.META.get("HTTP_AUTHORIZATION"));
             if not uid: raise Exception();

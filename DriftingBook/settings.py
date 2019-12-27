@@ -56,7 +56,7 @@ ROOT_URLCONF = 'DriftingBook.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['static/dist'],
+        'DIRS': [os.path.join(BASE_DIR,'static/front')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,7 +128,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'static2'),
-    os.path.join(BASE_DIR, 'static/dist/static')
+    os.path.join(BASE_DIR, "static/front")
 ]
 
 #  新增以下配置  #
